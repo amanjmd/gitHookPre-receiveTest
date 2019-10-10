@@ -1,0 +1,6 @@
+touch "abc.txt" 
+echo "Test commit" >> abc.txt
+git add . 
+git commit -m "new commit `date`"
+GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 52311 -i ../id_rsa" git push -u test master
+rm abc.txt
