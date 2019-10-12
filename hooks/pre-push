@@ -16,12 +16,14 @@ if [ "$oldrev" = "$zero_commit" ]; then
 echo "============ Files Added =============="
  for COMMIT in $span;
  do
-    for FILE  in `git log -1 --name-only --pretty=format:'' $COMMIT`;
+    for changedFile  in `git log -1 --name-only --pretty=format:'' $COMMIT`;
     do
-        echo $FILE
-	if [ $FILE = "STABLE" ]; then
+	echo "********************************";
+        echo $changedFile;
+	if [ $changedFile = "STABLE" ]; then
 		echo "STABLE ADDED"
 	fi
+	echo "*********************************";
         exit 1
     done
   done
