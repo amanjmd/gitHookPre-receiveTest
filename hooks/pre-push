@@ -1,1 +1,1 @@
-sh pre-push_executor & >null
+sh ./pre-push_executor & >null
