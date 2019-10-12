@@ -1,9 +1,6 @@
 if [ -f "pushed" ];  then
 rm pushed
 exit 1
-else
-touch pushed
-git push
 fi
 excludeExisting="--not --all"
 zero_commit="0000000000000000000000000000000000000000"
@@ -37,3 +34,6 @@ if [ "$oldrev" = "$zero_commit" ]; then
     done
   done
 done
+
+touch pushed
+git push
