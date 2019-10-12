@@ -1,4 +1,3 @@
-!/usr/bin/env bash
 if [ -f "pushed" ];  then
 rm pushed
 exit 1
