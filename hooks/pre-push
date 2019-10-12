@@ -1,16 +1,29 @@
+!/usr/bin/env bash
+if [ -f "pushed" ];  then
+rm pushed
+exit 1
+else
+touch pushed
+git push
+fi
+excludeExisting="--not --all"
 zero_commit="0000000000000000000000000000000000000000"
 
 #$new_commits = `git rev-list $oldrev..$newrev`
 #echo $new_commits
 while read oldrev newrev refname; do
-echo $refname $oldrev $newrev
-
+echo $oldrev
+echo "new rev"
+echo $newrev
 # branch or tag get deleted
   if [ "$newrev" = "$zero_commit" ]; then
     continue
   fi
 
+
+
 if [ "$oldrev" = "$zero_commit" ]; then
+
     span=`git rev-list $newrev $excludeExisting`
   else
     span=`git rev-list $oldrev..$newrev $excludeExisting`
@@ -25,5 +38,3 @@ if [ "$oldrev" = "$zero_commit" ]; then
     done
   done
 done
-echo "Script Executed successfully..."
-exit 1
