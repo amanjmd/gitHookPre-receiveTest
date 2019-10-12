@@ -19,8 +19,9 @@ echo "============ Files Added =============="
     for FILE  in `git log -1 --name-only --pretty=format:'' $COMMIT`;
     do
         echo $FILE
-	if [ $FILE = "STABLE" ]
+	if [ $FILE = "STABLE" ]; then
 		echo "STABLE ADDED"
+	fi
         exit 1
     done
   done
