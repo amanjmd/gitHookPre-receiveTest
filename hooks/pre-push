@@ -13,11 +13,14 @@ if [ "$oldrev" = "$zero_commit" ]; then
     span=`git rev-list $oldrev..$newrev $excludeExisting`
   fi
 
+echo "============ Files Added =============="
  for COMMIT in $span;
  do
     for FILE  in `git log -1 --name-only --pretty=format:'' $COMMIT`;
     do
         echo $FILE
+	if [ $FILE = "STABLE" ]
+		echo "STABLE ADDED"
         exit 1
     done
   done
