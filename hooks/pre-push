@@ -1,4 +1,7 @@
-echo "++++++++++++pre-push executing"
+zero_commit="0000000000000000000000000000000000000000"
+
+#$new_commits = `git rev-list $oldrev..$newrev`
+#echo $new_commits
 while read oldrev newrev refname; do
 echo $refname $oldrev $newrev
 
@@ -13,18 +16,14 @@ if [ "$oldrev" = "$zero_commit" ]; then
     span=`git rev-list $oldrev..$newrev $excludeExisting`
   fi
 
-echo "============ Files Added =============="
  for COMMIT in $span;
  do
-    for changedFile  in `git log -1 --name-only --pretty=format:'' $COMMIT`;
+    for FILE  in `git log -1 --name-only --pretty=format:'' $COMMIT`;
     do
-	echo "********************************";
-        echo $changedFile;
-	if [ $changedFile = "STABLE" ]; then
-		echo "STABLE ADDED"
-	fi
-	echo "*********************************";
+        echo $FILE
         exit 1
     done
   done
 done
+echo "Script Executed successfully..."
+exit 1
