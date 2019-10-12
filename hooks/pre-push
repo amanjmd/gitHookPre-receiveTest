@@ -1,4 +1,4 @@
-echo "pre-push executing"
+echo "++++++++++++pre-push executing"
 while read oldrev newrev refname; do
 echo $refname $oldrev $newrev
 
