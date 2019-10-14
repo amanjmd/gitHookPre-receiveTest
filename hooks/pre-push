@@ -30,8 +30,9 @@ do
 			echo $commit
       for FILE  in `git log -1 --name-only --pretty=format:'' $COMMIT`;do
         echo $FILE
-        if [ $FILE eq "STABLE"]
+        if [ $FILE = "STABLE" ];then
           touch isStableEdited
+        fi
       done
 		fi
 	fi
