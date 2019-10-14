@@ -1,0 +1,16 @@
+#if [ -f "pushed" ];  then
+#rm pushed
+#exit 1
+#fi
+#excludeExisting="--not --all"
+#zero_commit="0000000000000000000000000000000000000000"
+
+#$new_commits = `git rev-list $oldrev..$newrev`
+#echo $new_commits
+while read oldrev newrev refname; do
+echo $oldrev
+echo "new rev"
+echo $newrev
+done
+
+exit 1
