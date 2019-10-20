@@ -1,10 +1,3 @@
-#if [ -f "pushed" ];  then
-#rm pushed
-#exit 1
-#fi
-#excludeExisting="--not --all"
-#zero_commit="0000000000000000000000000000000000000000"
-
 z40=0000000000000000000000000000000000000000
 
 while read local_ref local_sha remote_ref remote_sha
@@ -14,27 +7,26 @@ do
 		# Handle delete
 		:
 	else
-		if [ "$remote_sha" = $z40 ]
-		then
-			# New branch, examine all commits
-			range="$local_sha"
-		else
-			# Update to existing branch, examine new commits
-			range="$remote_sha..$local_sha"
-		fi
-    echo $range
-		# Check for WIP commit
-		commit=`git rev-list "$range"`
-		if [ -n "$commit" ]
-		then
-			echo $commit
-      for FILE  in `git log -1 --name-only --pretty=format:'' $COMMIT`;do
-        echo $FILE
-        if [ $FILE = "STABLE" ];then
-          touch isStableEdited
-        fi
-      done
-		fi
+	 if [ "$remote_sha" = $z40 ]
+         then
+		# New branch, examine all commits
+		range="$local_sha"
+	 else
+		# Update to existing branch, examine new commits
+		range="$remote_sha..$local_sha"
+ 	 fi
+    	echo $range
+	commit=`git rev-list "$range"`
+	if [ -n "$commit" ]
+	then
+		echo $commit
+      		for FILE  in `git log -1 --name-only --pretty=format:'' $COMMIT`;do
+        	echo $FILE
+        	if [ $FILE = "STABLE" ];then
+          		touch isStableEdited
+        	fi
+      		done
+	fi
 	fi
 done
 exit 0
